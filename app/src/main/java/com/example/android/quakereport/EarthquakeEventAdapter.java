@@ -2,6 +2,7 @@ package com.example.android.quakereport;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.widget.ArrayAdapter;
 
 /**
@@ -75,8 +76,8 @@ public class EarthquakeEventAdapter extends ArrayAdapter {
         // Get the magnitude from the current object and set this text on the magnitude TextView
 
         Double magnitude = currentItem.getMagnitude();
-
         mMagnitudeLabel.setText(magnitude.toString());
+        Log.d(LOG_TAG, magnitude.toString());
 
         // Find the TextView in the list_item.xml layout with the ID for the next textview
 
@@ -85,8 +86,8 @@ public class EarthquakeEventAdapter extends ArrayAdapter {
         // Get the place from the current object and set this text on the place TextView
 
         String place = currentItem.getPlace();
-
         mPlaceLabel.setText(place);
+        Log.d(LOG_TAG, place);
 
         // Get the timestamp from the current object and set this text on the timestamp TextView
 
@@ -95,14 +96,12 @@ public class EarthquakeEventAdapter extends ArrayAdapter {
         // Get the timestamp from the current object and set this text on the magnitude TextView
 
         String timestamp = currentItem.getTimestamp();
-
         mTimestampLabel.setText(timestamp);
+        Log.d(LOG_TAG, timestamp);
 
-        // Return the whole list item layout (containing 3 TextViews so that it can be shown in the
+        // Return the whole list item layout (containing 3 TextViews) so that it can be shown in the
         // ListView
 
         return listViewItem;
-
-
     }
 }
