@@ -7,21 +7,30 @@
     android:orientation="horizontal"
     android:padding="16dp"
     >
+
+    <!--
+    To get all the children to take up equal amounts of space, use layout_weight combined with a
+    width of 0dp.
+
+    https://stackoverflow.com/questions/5986793/in-android-layouts-what-is-the-effect-meaning-of-layout-height-0dip
+    -->
+    
         <TextView
             android:id="@+id/magnitude"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:minWidth="60dp"
+            android:layout_weight="1"
             />
         <TextView
             android:id="@+id/place"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:minWidth="200dp"
+            android:layout_weight="1"
             />
         <TextView
             android:id="@+id/timestamp"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             />
 </LinearLayout>
