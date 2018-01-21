@@ -15,6 +15,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 /*
@@ -40,7 +42,7 @@ public class EarthquakeEventAdapter extends ArrayAdapter {
 
     private static final String LOG_TAG = EarthquakeEvent.class.getSimpleName();
 
-    public EarthquakeEvent(Activity context, ArrayList<EarthquakeEvent> earthquakeEvents) {
+    public EarthquakeEventAdapter(Activity context, ArrayList<EarthquakeEvent> earthquakeEvents) {
         // Here, we initialize the ArrayAdapter's internal storage for the context and the list.
         // the second argument is used when the ArrayAdapter is populating a single TextView.
         // Because this is a custom adapter for three TextViews, the adapter is not
@@ -55,33 +57,51 @@ public class EarthquakeEventAdapter extends ArrayAdapter {
     * @return The View for the position in the AdapterView.
     * */
 
-    @NonNull
     @Override
-    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+    public View getView(int position, View convertView, ViewGroup parent) {
         View listViewItem = convertView;
 
         if (listViewItem == null) {
-            listViewItem = LayoutInflater.from(getContext()).inflate(R.id.dummy, parent, false);
+            listViewItem = LayoutInflater.from(getContext()).inflate(R.layout.list_item, parent, false);
         }
 
-        EarthquakeEvent currentItem = getItem(position);
+        EarthquakeEvent currentItem = (EarthquakeEvent) getItem(position);
 
         // Find the TextView in the list_item.xml layout with the proper ID (place, etc.)
+        // we call a method on the item to grab it
 
-        // Get the place from the current object and
-        // set this text on the place TextView
+        TextView mMagnitudeLabel = (TextView) listViewItem.findViewById(R.id.magnitude);
+
+        // Get the magnitude from the current object and set this text on the magnitude TextView
+
+        Double magnitude = currentItem.getMagnitude();
+
+        mMagnitudeLabel.setText(magnitude.toString());
 
         // Find the TextView in the list_item.xml layout with the ID for the next textview
 
-        // Get the magnitude from the current object and
-        // set this text on the magnitude TextView
+        TextView mPlaceLabel = (TextView) listViewItem.findViewById(R.id.place);
 
-        // Get the timestamp from the current object and
-        // set this text on the timestamp TextView
+        // Get the place from the current object and set this text on the place TextView
 
-        // Return the whole list item layout (containing 3 TextViews)
-        // so that it can be shown in the ListView
-        return listItemView;
+        String place = currentItem.getPlace();
+
+        mPlaceLabel.setText(place);
+
+        // Get the timestamp from the current object and set this text on the timestamp TextView
+
+        TextView mTimestampLabel = (TextView) listViewItem.findViewById(R.id.timestamp);
+
+        // Get the timestamp from the current object and set this text on the magnitude TextView
+
+        String timestamp = currentItem.getTimestamp();
+
+        mTimestampLabel.setText(timestamp);
+
+        // Return the whole list item layout (containing 3 TextViews so that it can be shown in the
+        // ListView
+
+        return listViewItem;
 
 
     }
