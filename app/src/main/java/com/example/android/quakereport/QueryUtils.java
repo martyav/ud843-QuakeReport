@@ -51,15 +51,17 @@ public final class QueryUtils {
             // build up a list of Earthquake objects with the corresponding data.
 
             JSONObject response = new JSONObject(QueryUtils.SAMPLE_JSON_RESPONSE);
-            JSONObject features = response.getJSONObject("features");
+            JSONArray features = response.getJSONArray("features"); // note that it's an array of dicts
 
             for (int i = 0; i < features.length(); i++) {
-                JSONObject properties = features.getJSONObject("properties");
+                JSONObject event = features.getJSONObject(i); // attempting features[i] will return an error
+                JSONObject properties = event.getJSONObject("properties");
+
                 String place = properties.getString("place");
                 Double magnitude = properties.getDouble("mag");
                 Integer time = properties.getInt("time");
 
-                EarthquakeEvent newEvent = new EarthquakeEvent(place, magnitude, time.toString());
+                EarthquakeEvent newEvent = new EarthquakeEvent(place, magnitude, Integer.toString(time));
 
                 earthquakes.add(newEvent);
             }
