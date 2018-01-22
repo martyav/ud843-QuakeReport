@@ -6,6 +6,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 /**
@@ -59,9 +62,12 @@ public final class QueryUtils {
 
                 String place = properties.getString("place");
                 Double magnitude = properties.getDouble("mag");
-                Integer time = properties.getInt("time");
+                Long time = properties.getLong("time");
+                Date date = new Date(time);
+                String pattern = "LLL dd, yyyy";
+                SimpleDateFormat formatter = new SimpleDateFormat(pattern);
 
-                EarthquakeEvent newEvent = new EarthquakeEvent(place, magnitude, Integer.toString(time));
+                EarthquakeEvent newEvent = new EarthquakeEvent(place, magnitude, formatter.format(date));
 
                 earthquakes.add(newEvent);
             }
