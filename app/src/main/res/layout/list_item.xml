@@ -14,7 +14,7 @@
 
     https://stackoverflow.com/questions/5986793/in-android-layouts-what-is-the-effect-meaning-of-layout-height-0dip
     -->
-    
+
         <TextView
             android:id="@+id/magnitude"
             android:layout_width="0dp"
