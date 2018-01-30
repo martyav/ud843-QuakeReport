@@ -89,11 +89,21 @@ public class EarthquakeEventAdapter extends ArrayAdapter {
         mPlaceLabel.setText(place);
         Log.d(LOG_TAG, place);
 
+        // Find the TextView in the list_item.xml layout with the ID for the next textview
+
+        TextView mDateLabel = (TextView) listViewItem.findViewById(R.id.date);
+
+        // Get the date from the current object and set this text on the date TextView
+
+        String date = currentItem.getDate();
+        mDateLabel.setText(date);
+        Log.d(LOG_TAG, date);
+
+        // Find the TextView in the list_item.xml layout with the ID for the next textview
+
+        TextView mTimestampLabel = (TextView) listViewItem.findViewById(R.id.time);
+
         // Get the timestamp from the current object and set this text on the timestamp TextView
-
-        TextView mTimestampLabel = (TextView) listViewItem.findViewById(R.id.timestamp);
-
-        // Get the timestamp from the current object and set this text on the magnitude TextView
 
         String timestamp = currentItem.getTimestamp();
         mTimestampLabel.setText(timestamp);

@@ -64,10 +64,12 @@ public final class QueryUtils {
                 Double magnitude = properties.getDouble("mag");
                 Long time = properties.getLong("time");
                 Date date = new Date(time);
-                String pattern = "LLL dd, yyyy";
-                SimpleDateFormat formatter = new SimpleDateFormat(pattern);
+                String patternForDate = "LLL dd, yyyy";
+                String patternForTime = "H:mm a";
+                SimpleDateFormat dateFormatter = new SimpleDateFormat(patternForDate);
+                SimpleDateFormat timeFormatter = new SimpleDateFormat(patternForTime);
 
-                EarthquakeEvent newEvent = new EarthquakeEvent(place, magnitude, formatter.format(date));
+                EarthquakeEvent newEvent = new EarthquakeEvent(place, magnitude, dateFormatter.format(date), timeFormatter.format(date));
 
                 earthquakes.add(newEvent);
             }

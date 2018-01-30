@@ -12,13 +12,15 @@ public class EarthquakeEvent {
 
     private String mPlace;
     private Double mMagnitude;
+    private String mDate;
     private String mTimestamp;
 
     // Init the object as we would in Swift, of course
 
-    public EarthquakeEvent(String place, Double magnitude, String time) {
+    public EarthquakeEvent(String place, Double magnitude, String date, String time) {
         mPlace = place;
         mMagnitude = magnitude;
+        mDate = date;
         mTimestamp = time;
     }
 
@@ -31,6 +33,8 @@ public class EarthquakeEvent {
     public Double getMagnitude() {
         return mMagnitude;
     }
+
+    public String getDate() { return mDate; }
 
     public String getTimestamp() {
         return mTimestamp;
